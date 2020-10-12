@@ -1,0 +1,36 @@
+<% if @user.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+
+    <%@user.errors.full_messages.each do |msg| %>
+      <li> <%=msg %></li>
+    <%end %>
+  </div>
+<% end %>
+<div class="container">
+  <%= form_with(model: @user,local: true,class: "shadow p-5 m-1 bg-info rounded") do |f| %>
+    <div class="form-group row ">
+      <%= f.label :username, class: "col-2 col-form-label" %></br>
+      <div class="col-10">
+        <%= f.text_field :name, class: "form-control",placeholder: "username" %>
+      </div>
+    </div>
+
+    <div class="form-group row ">
+      <%= f.label :email, class: "col-2 col-form-label" %></br>
+      <div class="col-10">
+        <%= f.text_field :email, class: "form-control",placeholder: "email" %>
+      </div>
+    </div>
+
+    <div class="form-group row ">
+      <%= f.label :password, class: "col-2 col-form-label" %></br>
+      <div class="col-10">
+        <%= f.password_field :password, class: "form-control",placeholder: "password" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.submit(@user.new_record? ? "SignUp": "Update Account" ,class: "btn btn-outline-light btn-lg m-auto" )%>
+    </div>
+  <% end %>
+</div>

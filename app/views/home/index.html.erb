@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <div class="container">
+      <div class="chatroom">
+        <div class="chatroom-chat mt-1" id="messages">
+         <%= render  @messages %>
+        </div>
+        <%= form_with(model: @message, class: "form-inline ml-5 mr-5",url: messages_path,remote: true) do |f| %>
+            <label class="sr-only" for="inlineFormInputName2">Msg</label>
+          <%= f.text_field :body, class: "form-control mb-2 mr-sm-2",placeholder: "enter the msg" ,id: "inlineFormInputName2"%>
+          <%= f.submit("submit",class: "btn btn-primary mb-2 " ,id: "submit-btn-msg")%>
+        <% end %>
+      </div>
+        <div class="card users">
+          <div class="card-header">
+            Users
+          </div>
+          <ul class="list-group list-group-flush">
+            <% @users.each do |user| %>
+              <li class="list-group-item"><%= user.name %></li>
+              <%end %>
+          </ul>
+        </div>
+    </div>
+</body>
+</html>
